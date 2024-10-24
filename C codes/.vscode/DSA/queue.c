@@ -1,0 +1,94 @@
+#include <stdio.h>
+#define max 10
+int queue[max];
+int front=-1;
+int rear=-1;
+
+int isFull(){
+    return front==(rear+1)%max;
+}
+
+void enqueue(int val){
+    if (isFull()){
+        printf("Thelaa lal hai!! kahi aur jao...");
+        return;
+    }
+    else{
+        if(front==-1){
+            front=0;
+        }
+        rear=(rear+1)%max;
+        queue[rear]=val;
+        
+    }
+}
+
+void dequeue(){
+    if(front==-1){
+        printf("khali hai");
+        return;
+    }
+    else{
+        if(front==rear){
+            front=rear=-1;
+        }
+        else{
+            printf("%d dequeued", queue[front]);
+            front=(front+1)%max;
+        }
+    }
+}
+
+void display(){
+    if(front==-1){
+        printf("Tu phir aa gaya gali khane....");
+        return;
+    }
+    else{
+        int i=front;
+        do{
+            printf("%d ",queue[i]);
+            i=(i+1)%max;
+        }while(i!=(rear+1)%max);
+    }
+}
+
+int main() {
+    int choice, item;
+
+    do {
+        printf("\nCircular Queue Menu:\n");
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
+        printf("3. Display\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                if (!isFull()) {
+                    printf("Enter element to enqueue: ");
+                    scanf("%d", &item);
+                    enqueue(item);
+                } else {
+                    printf("Queue is full. Cannot enqueue.\n");
+                }
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("Exiting program.\n");
+                break;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    } while (choice != 4);
+
+    return 0;
+}
+

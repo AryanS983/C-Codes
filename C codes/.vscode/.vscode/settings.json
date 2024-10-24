@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "ctype.h": "c"
+    },
+    "workbench.editor.highlightModifiedTabs": true
+}
